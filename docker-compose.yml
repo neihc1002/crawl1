@@ -18,11 +18,10 @@ services:
       - "traefik.docker.network=proxy"
       - "traefik.http.routers.cr-secure.entrypoints=websecure"
       - "traefik.http.routers.cr-secure.rule=Host(`gadgets.luxcard.vn`)"
-    environment: 
+    environment:
       - PAGE=1
     networks:
       - proxy
-    env
 networks:
   proxy:
     external: true
