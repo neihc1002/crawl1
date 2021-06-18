@@ -1,0 +1,9 @@
+version: '3.3'
+
+services:
+  crawl1:
+    build: ./
+    image: crawl1
+    container_name: crawl1
+    volumes: 
+      - "./data:/code/data"
