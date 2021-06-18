@@ -7,3 +7,22 @@ services:
     container_name: crawl1
     volumes: 
       - "./data:/code/data"
+  crawler:
+    image: nginx:alpine
+    restart: always
+    volumes:
+      - ./conf.d:/etc/nginx/conf.d
+      - ./data:/usr/share/nginx/html/file
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.routers.cr-secure.entrypoints=websecure"
+      - "traefik.http.routers.cr-secure.rule=Host(`gadgets.luxcard.vn`)"
+    environment: 
+      - PAGE=1
+    networks:
+      - proxy
+    env
+networks:
+  proxy:
+    external: true
